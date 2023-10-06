@@ -13,17 +13,18 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
     <!-- Plugins css -->
-    <link href="{{asset('admin/assets/libs/flatpickr/flatpickr.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('admin/assets/libs/selectize/css/selectize.bootstrap3.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/assets/libs/flatpickr/flatpickr.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/assets/libs/selectize/css/selectize.bootstrap3.css') }}" rel="stylesheet"
+        type="text/css" />
 
     <!-- Bootstrap css -->
-    <link href="{{asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App css -->
-    <link href="{{asset('admin/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="{{ asset('admin/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
     <!-- icons -->
-    <link href="{{asset('admin/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Head js -->
-    <script src="{{asset('admin/assets/js/head.js')}}"></script>
+    <script src="{{ asset('admin/assets/js/head.js') }}"></script>
 
 </head>
 
@@ -54,7 +55,7 @@
                 <!-- Start Content-->
                 <div class="container-fluid">
 
-                  @yield('content')
+                    @yield('content')
 
                 </div> <!-- container -->
 
@@ -504,20 +505,43 @@
     <div class="rightbar-overlay"></div>
 
     <!-- Vendor js -->
-    <script src="{{asset('admin/assets/js/vendor.min.js')}}"></script>
+    <script src="{{ asset('admin/assets/js/vendor.min.js') }}"></script>
 
     <!-- Plugins js-->
-    <script src="{{asset('admin/assets/libs/flatpickr/flatpickr.min.js')}}"></script>
-    <script src="{{asset('admin/assets/libs/apexcharts/apexcharts.min.js')}}"></script>
+    <script src="{{ asset('admin/assets/libs/flatpickr/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 
-    <script src="{{asset('admin/assets/libs/selectize/js/standalone/selectize.min.js')}}"></script>
+    <script src="{{ asset('admin/assets/libs/selectize/js/standalone/selectize.min.js') }}"></script>
 
     <!-- Dashboar 1 init js-->
-    <script src="{{asset('admin/assets/js/pages/dashboard-1.init.js')}}"></script>
+    <script src="{{ asset('admin/assets/js/pages/dashboard-1.init.js') }}"></script>
 
     <!-- App js-->
-    <script src="{{asset('admin/assets/js/app.min.js')}}"></script>
+    <script src="{{ asset('admin/assets/js/app.min.js') }}"></script>
 
+    <!-- Sweet Alert js-->
+    <script src="{{ asset('admin/assets/js/sweet-alert.js') }}"></script>
+
+    @if (Session::has('success'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: `{{ Session::get('success') }}`
+            })
+        </script>
+    @endif
 </body>
 
 </html>

@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         // Create user\
         User::updateOrCreate([
             'name' => 'Jone Doe',
-            'email' => 'user@mail.com',
+            'email' => 'user@gmail.com',
             'password' => Hash::make('password'),
             'status' => 1,
             'is_admin' => 0
